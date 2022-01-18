@@ -27,3 +27,6 @@ const config = {
 }
 
 const game = new Phaser.Game(config)
+
+console.log('\nHello, World!');
+console.log('test');

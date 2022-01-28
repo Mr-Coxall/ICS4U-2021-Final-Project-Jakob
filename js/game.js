@@ -6,15 +6,25 @@
 // Created on: Sep 2020
 // This is the Phaser3 configuration file
 
+import SplashScene from './startScreen.js'
+import TitleScene from './titleScene.js'
+import MenuScene from './menuScene.js'
+import GameScene from './gameScene.js'
+
+const startScreen = new SplashScene()
+const titleScene = new TitleScene()
+const menuScene = new MenuScene()
+const gameScene = new GameScene()
+
 //* Game scene */
 const config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: 1920,
+  height: 1080,
   physics: {
     default: 'arcade',
     arcade: {
-      debug: false
+      debug: true
     }
   },
   // set background color
@@ -28,5 +38,9 @@ const config = {
 
 const game = new Phaser.Game(config)
 
-console.log('\nHello, World!');
-console.log('test');
+game.scene.add('startScreen', startScreen)
+game.scene.add('titleScene', titleScene)
+game.scene.add('menuScene', menuScene)
+game.scene.add('gameScene', gameScene)
+
+game.scene.start('startScreen')

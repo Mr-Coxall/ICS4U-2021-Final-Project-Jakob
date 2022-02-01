@@ -19,8 +19,8 @@ const gameScene = new GameScene()
 //* Game scene */
 const config = {
   type: Phaser.AUTO,
-  width: 1920,
-  height: 1080,
+  width: 800,
+  height: 600,
   physics: {
     default: 'arcade',
     arcade: {
@@ -44,3 +44,24 @@ game.scene.add('menuScene', menuScene)
 game.scene.add('gameScene', gameScene)
 
 game.scene.start('startScreen')
+
+    var Food = new Phaser.Class({
+
+        Extends: Phaser.GameObjects.Image,
+
+        initialize:
+
+        function Food (scene, x, y)
+        {
+            Phaser.GameObjects.Image.call(this, scene)
+
+            this.setTexture('food');
+            this.setPosition(x * 16, y * 16);
+            this.setOrigin(0);
+
+            this.total = 0;
+
+            scene.children.add(this);
+        }
+
+    })

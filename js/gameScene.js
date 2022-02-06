@@ -18,6 +18,7 @@ var config = {
 var snake
 var food
 var cursors
+var score
 
 var UP = 0
 var DOWN = 1
@@ -30,6 +31,12 @@ class GameScene extends Phaser.Scene {
 
   constructor () {
     super({ key: 'gameScene' })
+    this.score = 0
+    this.scoreText = null
+    this.gameOverText = null
+
+    this.scoreTextStyle = {font: '20px Arial', fill: '#ffffff', align: 'center'}
+    this.gameOverTextStyle = { font: '65px Arial', fill: '#ff0000', align: 'center' }
   }
 
   init (data) {
@@ -40,9 +47,11 @@ class GameScene extends Phaser.Scene {
     console.log('Game Scene')
     this.load.image('body', 'body.png')
     this.load.image('food', 'food3.png')
+    this.load.image('startButton', './start.png')
   }
 
 create (data) {
+  
      var Food = new Phaser.Class({
 
         Extends: Phaser.GameObjects.Image,
@@ -65,6 +74,8 @@ create (data) {
         eat: function ()
         {
             this.total++;
+            this.score = this.score + 1
+            //this.scoreText.setText('Score: ' + this.total.toString())
         }
 
     });
@@ -202,6 +213,8 @@ create (data) {
         {
             if (this.head.x === food.x && this.head.y === food.y)
             {
+
+
                 this.grow();
 
                 food.eat();
@@ -244,11 +257,14 @@ create (data) {
     //  Keyboard controls
     cursors = this.input.keyboard.createCursorKeys();
 
+    this.scoreText = this.add.text(10, 10, 'Score: ' + this.score.toString(), this.scoreTextStyle)
 
 }
 
 
 update (time, delta) {
+   //this.score = this.score + 1
+   //this.scoreText.setText('Score: ' + this.score.toString())
     function repositionFood ()
 {
     //  First create an array that assumes all positions
@@ -301,6 +317,9 @@ update (time, delta) {
 }
     if (!snake.alive)
     {
+      this.gameOverText = this.add.text(600 / 2, 480 / 2, 'Game Over!\nClick to play again.', this.gameOverTextStyle).setOrigin(0.5)
+      this.gameOverText.setInteractive({ useHandCursor: true })
+      this.gameOverText.on('pointerdown', () => this.scene.start('gameScene'))
       //this.scene.start('game_over')
         return;
         //this.scene.switch('Game_Over')

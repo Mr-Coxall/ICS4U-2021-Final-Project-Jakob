@@ -6,6 +6,7 @@
 // Created on: Sep 2020
 // This is the Title Scene
 
+
 class TitleScene extends Phaser.Scene {
   constructor () {
     super({ key: 'titleScene' })
@@ -28,8 +29,8 @@ class TitleScene extends Phaser.Scene {
   create (data) {
 
     this.titleSceneBackgroundImage = this.add.sprite(0, 0, 'titleSceneBackground').setScale(1)
-    this.titleSceneBackgroundImage.x = 800 / 4
-    this.titleSceneBackgroundImage.y = 600 / 4
+    this.titleSceneBackgroundImage.x = 640 / 4
+    this.titleSceneBackgroundImage.y = 480 / 4
 
     //this.titleSceneText = this.add.text(1920 / 2, (1080 / 2) + 350, 'Space Aliens', //this.titleSceneTextStyle).setOrigin(0.5)
   }

@@ -34,13 +34,13 @@ class MenuScene extends Phaser.Scene {
 
   create (data) {
     this.menuSceneBackgroundImage = this.add.sprite(0, 0, 'menuSceneBackground').setScale(3.5)
-    this.menuSceneBackgroundImage.x = 800 / 2
-    this.menuSceneBackgroundImage.y = 600 / 2
+    this.menuSceneBackgroundImage.x = 640 / 2
+    this.menuSceneBackgroundImage.y = 480 / 2
 
     //music.game.add.audio('music')
     //music.play()
 
-    this.startButton = this.add.sprite(800 / 2, (600 / 2) + 100, 'startButton')
+    this.startButton = this.add.sprite(640 / 2, (480 / 2) + 100, 'startButton')
     this.startButton.setInteractive({ useHandCursor: true })
     this.startButton.on('pointerdown', () => this.clickButton())
     this.sound.play('click')

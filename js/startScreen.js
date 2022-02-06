@@ -25,8 +25,8 @@ class SplashScene extends Phaser.Scene {
   create (data) {
     //let startScreen = true
     this.startScreenBackgroundImage = this.add.sprite(0, 0, 'startScreenBackground')
-    this.startScreenBackgroundImage.x = 800 / 1.9
-    this.startScreenBackgroundImage.y = 600 / 2
+    this.startScreenBackgroundImage.x = 640 / 1.9
+    this.startScreenBackgroundImage.y = 480 / 2
   }
 
   update (time, delta) {

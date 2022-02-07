@@ -15,11 +15,13 @@ var config = {
 
 };
 
+// Variables
 var snake
 var food
 var cursors
 var score
 
+// Directions constants
 var UP = 0
 var DOWN = 1
 var LEFT = 2
@@ -35,8 +37,9 @@ class GameScene extends Phaser.Scene {
     this.scoreText = null
     this.gameOverText = null
 
+    // Text Styles
     this.scoreTextStyle = {font: '20px Arial', fill: '#ffffff', align: 'center'}
-    this.gameOverTextStyle = { font: '65px Arial', fill: '#ff0000', align: 'center' }
+    this.gameOverTextStyle = { font: '45px Arial', fill: '#ffffff', align: 'center' }
   }
 
   init (data) {
@@ -44,17 +47,21 @@ class GameScene extends Phaser.Scene {
   }
 
   preload () {
+
+    // Images and Sounds
     console.log('Game Scene')
     this.load.image('body', 'body.png')
     this.load.image('food', 'food3.png')
     this.load.image('startButton', './start.png')
+    this.load.audio('eat', './food_G1U6tlb.mp3')
+    this.load.audio('death', './mixkit-arcade-retro-game-over-213.wav')
   }
 
-create (data) {
-  
-     var Food = new Phaser.Class({
+  create (data) {
+    this.score = 0
+    var Food = new Phaser.Class({
 
-        Extends: Phaser.GameObjects.Image,
+    Extends: Phaser.GameObjects.Image,
 
         initialize:
 
@@ -74,8 +81,6 @@ create (data) {
         eat: function ()
         {
             this.total++;
-            this.score = this.score + 1
-            //this.scoreText.setText('Score: ' + this.total.toString())
         }
 
     });
@@ -185,9 +190,7 @@ create (data) {
 
             if (hitBody)
             {
-            
                 console.log('dead');
-                //this.scene.switch('game_over')
                 this.alive = false;
 
                 return false;
@@ -250,6 +253,7 @@ create (data) {
 
     });
 
+    // Create food and snake
     food = new Food(this, 3, 4);
 
     snake = new Snake(this, 8, 8);
@@ -263,10 +267,8 @@ create (data) {
 
 
 update (time, delta) {
-   //this.score = this.score + 1
-   //this.scoreText.setText('Score: ' + this.score.toString())
     function repositionFood ()
-{
+    {
     //  First create an array that assumes all positions
     //  are valid for the new piece of food
 
@@ -314,17 +316,15 @@ update (time, delta) {
     {
         return false;
     }
-}
+  }
     if (!snake.alive)
     {
-      this.gameOverText = this.add.text(600 / 2, 480 / 2, 'Game Over!\nClick to play again.', this.gameOverTextStyle).setOrigin(0.5)
+      this.gameOverText = this.add.text(600 / 2, 480 / 2.5, 'Game Over!\nClick to play again.', this.gameOverTextStyle).setOrigin(0.5)
       this.gameOverText.setInteractive({ useHandCursor: true })
       this.gameOverText.on('pointerdown', () => this.scene.start('gameScene'))
-      //this.scene.start('game_over')
-        return;
-        //this.scene.switch('Game_Over')
+      this.scoreText = this.add.text(600 / 2, 480 / 1.8, 'Your score: ' + this.score.toString(), this.scoreTextStyle).setOrigin(0.5)
+      return;
     }
-
     /**
     * Check which key is pressed, and then change the direction the snake
     * is heading based on that. The checks ensure you don't double-back
@@ -356,9 +356,12 @@ update (time, delta) {
         if (snake.collideWithFood(food))
         {
             repositionFood();
+            this.sound.play('eat')
+            this.score = this.score + 1
+            this.scoreText.setText('Score: ' + this.score.toString())
         }
     }
-}
+  }
 }
 
 export default GameScene

@@ -10,7 +10,7 @@ class SplashScene extends Phaser.Scene {
   constructor () {
     super({ key: 'startScreen' })
 
-    this.splashSceneBackgroundImage = null
+    this.startScreenBackgroundImage = null
   }
 
   init (data) {
@@ -19,13 +19,13 @@ class SplashScene extends Phaser.Scene {
 
   preload () {
     console.log('Splash Scene')
-    this.load.image('startScreenBackground', './Untitled.png')
+    this.load.image('startScreenBackground', './startimage.png')
   }
 
   create (data) {
     //let startScreen = true
     this.startScreenBackgroundImage = this.add.sprite(0, 0, 'startScreenBackground')
-    this.startScreenBackgroundImage.x = 640 / 1.9
+    this.startScreenBackgroundImage.x = 640 / 2
     this.startScreenBackgroundImage.y = 480 / 2
   }
 

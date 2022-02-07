@@ -13,7 +13,7 @@ class TitleScene extends Phaser.Scene {
     
     this.titleSceneBackgroundImage = null
     this.titleSceneText = null
-    this.titleSceneTextStyle = { font: '200px Times', fill: '#fde4b9', align: 'center' }
+    this.titleSceneTextStyle = { font: '60px Times', fill: '#4b855f', align: 'center' }
   }
 
   init (data) {
@@ -22,17 +22,16 @@ class TitleScene extends Phaser.Scene {
 
   preload () {
     console.log('Title Scene')
-      this.load.image('titleSceneBackground', './title.png')
-      //this.load.audio('music', './music.mp3')
+    this.load.image('titleSceneBackground', './cartoon-meadow-landscape-summer-green-fields-view-spring-lawn-hill-blue-sky-green-grass-fields-landscape-background-illustration-field-grass-meadow-landscape-spring-summer_229548-381 (1).jpg')
   }
 
   create (data) {
 
-    this.titleSceneBackgroundImage = this.add.sprite(0, 0, 'titleSceneBackground').setScale(1)
-    this.titleSceneBackgroundImage.x = 640 / 4
-    this.titleSceneBackgroundImage.y = 480 / 4
+    this.titleSceneBackgroundImage = this.add.sprite(0, 0, 'titleSceneBackground').setScale(1.5)
+    this.titleSceneBackgroundImage.x = 640 / 2
+    this.titleSceneBackgroundImage.y = 480 / 2
 
-    //this.titleSceneText = this.add.text(1920 / 2, (1080 / 2) + 350, 'Space Aliens', //this.titleSceneTextStyle).setOrigin(0.5)
+    this.titleSceneText = this.add.text(600 / 2, (480 / 8) + 100, 'Snake Game', this.titleSceneTextStyle).setOrigin(0.5)
   }
 
   update (time, delta) {

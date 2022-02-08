@@ -10,17 +10,19 @@ import SplashScene from './startScreen.js'
 import TitleScene from './titleScene.js'
 import MenuScene from './menuScene.js'
 import GameScene from './gameScene.js'
+import Settings from './settings.js'
 
 const startScreen = new SplashScene()
 const titleScene = new TitleScene()
 const menuScene = new MenuScene()
 const gameScene = new GameScene()
+const settings = new Settings()
 
 //* Game scene */
 const config = {
   type: Phaser.AUTO,
-  width: 1920,
-  height: 1080,
+  width: 640,
+  height: 480,
   physics: {
     default: 'arcade',
     arcade: {
@@ -42,5 +44,6 @@ game.scene.add('startScreen', startScreen)
 game.scene.add('titleScene', titleScene)
 game.scene.add('menuScene', menuScene)
 game.scene.add('gameScene', gameScene)
+game.scene.add('settings', settings)
 
 game.scene.start('startScreen')
